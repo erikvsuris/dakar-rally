@@ -5,6 +5,8 @@ public class DakarRally {
     private static int operationsCounter = 0;
 
     public static List<Integer> calculateMininumStops(int L, int d, int[] x) {
+        if (operationsCounter != 0) operationsCounter = 0;
+
         int n = x.length;
         int[] stops = new int[n + 2];
         stops[0] = 0;
@@ -14,7 +16,7 @@ public class DakarRally {
 
         List<Integer> paradas = new ArrayList<>();
 
-        System.out.println("\n\nPontos escolhidos:");
+        // System.out.println("\n\nPontos escolhidos:");
         for (int i = 0; i < n - 1; ) {
             int nextStop = i;
 
@@ -29,7 +31,7 @@ public class DakarRally {
 
             if (nextStop < n - 1) {
                 paradas.add(stops[nextStop]);
-                System.out.print(stops[nextStop] + " ");
+                // System.out.print(stops[nextStop] + " ");
             }
 
             i = nextStop;
