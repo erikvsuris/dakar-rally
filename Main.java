@@ -15,43 +15,46 @@ public class Main {
         long endTime;
         long totalExecutionTime = 0;
         long meanExecutionTime;
+        int numberOfTests = 5;
         
         for (int i = 1; i <= 10; i++) {
             System.out.println("\nCaso de Teste " + i);
             
             L = i * 100;
-            d = i * 5;
-            x = i * 10;
+            d = i * 10;
+            x = i * 20;
     
             System.out.println("L = " + L);
             System.out.println("d = " + d);
             System.out.println("x = " + x);
             
             rallyStops = generateRallyStopPoints(L, d, x);
-
+            
+            System.out.print("\nPontos de Parada Criados: ");
             for (int stop : rallyStops) {
                 System.out.print(stop + " ");
             }
 
             choosenStopPoints = null;
             totalExecutionTime = 0;
-            
-            for (int j = 0; j < 10; j++) {
+
+            for (int j = 0; j < numberOfTests; j++) {
+                DakarRally.getOperationsCounter();
                 startTime = System.nanoTime();
                 choosenStopPoints = DakarRally.calculateMininumStops(L, d, rallyStops);
                 endTime = System.nanoTime();
                 totalExecutionTime += (endTime - startTime);
             }
 
-            meanExecutionTime = totalExecutionTime / 10;
+            meanExecutionTime = totalExecutionTime / numberOfTests;
             
             if (choosenStopPoints != null) {
-                System.out.println("\nChoosen Stops: " + choosenStopPoints);
+                System.out.println("\nPontos de Parada Escolhidos: " + choosenStopPoints);
             } else {
-                System.out.println("\nNão é possível completar o rally com as condições dadas.");
+                System.out.println("\nNão é possível completar o rally com os pontos de parada fornecidos.");
             }
     
-            System.out.println("Tempo Médio de execução: " + meanExecutionTime + " ms");
+            System.out.println("Tempo Médio de execução: " + meanExecutionTime + " ns");
             System.out.println("Número de operações: " + DakarRally.getOperationsCounter());
         }
     }
@@ -62,10 +65,9 @@ public class Main {
         int interval = L / x;
         int rand;
         
-        for (int i = 0; i < x; i++) {
+        for (int i = 1; i <= x; i++) {
             rand = (int) (Math.random() * interval) + 1;
-            System.out.print(rand + " ");
-            rallyStopPoints[i] = (interval * i) + rand;
+            rallyStopPoints[i - 1] = (interval * i) + rand;
         }
 
         return rallyStopPoints;
