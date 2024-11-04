@@ -60,15 +60,20 @@ public class Main {
     }
 
     public static int[] generateRallyStopPoints(int L, int d, int x) {
+        if (L <= 0 || d <= 0 || x <= 0)
+            throw new IndexOutOfBoundsException();
+
         int[] rallyStopPoints = new int[x];
         
         int interval = L / x;
         int rand;
         
-        for (int i = 1; i <= x; i++) {
+        for (int i = 0; i < x - 1; i++) {
             rand = (int) (Math.random() * interval) + 1;
-            rallyStopPoints[i - 1] = (interval * i) + rand;
+            rallyStopPoints[i] = (interval * i) + rand;
         }
+
+        rallyStopPoints[x - 1] = rallyStopPoints[x - 2] + 1;
 
         return rallyStopPoints;
     }

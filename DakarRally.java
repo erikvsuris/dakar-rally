@@ -5,9 +5,8 @@ public class DakarRally {
     private static int operationsCounter = 0;
 
     public static List<Integer> calculateMininumStops(int L, int d, int[] x) {
-        if (L <= 0 || d <= 0 || x == null || x.length == 0) {
+        if (L <= 0 || d <= 0 || x == null || x.length == 0) 
             throw new IndexOutOfBoundsException();
-        }
 
         int n = x.length;
         int[] stops = new int[n + 2];
