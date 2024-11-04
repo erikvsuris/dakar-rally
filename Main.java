@@ -15,7 +15,7 @@ public class Main {
         long endTime;
         long totalExecutionTime = 0;
         long meanExecutionTime;
-        int numberOfTests = 5;
+        int numberOfTests = 10;
         
         for (int i = 1; i <= 10; i++) {
             System.out.println("\nCaso de Teste " + i);
@@ -49,7 +49,7 @@ public class Main {
             meanExecutionTime = totalExecutionTime / numberOfTests;
             
             if (choosenStopPoints != null) {
-                System.out.println("\nPontos de Parada Escolhidos: " + choosenStopPoints);
+                System.out.println("\nPontos de Parada Escolhidos [" + choosenStopPoints.size() + "]:" + choosenStopPoints);
             } else {
                 System.out.println("\nNão é possível completar o rally com os pontos de parada fornecidos.");
             }
@@ -60,20 +60,15 @@ public class Main {
     }
 
     public static int[] generateRallyStopPoints(int L, int d, int x) {
-        if (L <= 0 || d <= 0 || x <= 0)
-            throw new IndexOutOfBoundsException();
-
         int[] rallyStopPoints = new int[x];
         
         int interval = L / x;
         int rand;
         
-        for (int i = 0; i < x - 1; i++) {
+        for (int i = 1; i <= x; i++) {
             rand = (int) (Math.random() * interval) + 1;
-            rallyStopPoints[i] = (interval * i) + rand;
+            rallyStopPoints[i - 1] = (interval * i) + rand;
         }
-
-        rallyStopPoints[x - 1] = rallyStopPoints[x - 2] + 1;
 
         return rallyStopPoints;
     }

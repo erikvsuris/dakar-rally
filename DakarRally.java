@@ -9,18 +9,18 @@ public class DakarRally {
             throw new IndexOutOfBoundsException();
 
         int n = x.length;
-        int[] stops = new int[n + 2];
-        stops[0] = 0;
-        System.arraycopy(x, 0, stops, 1, n);
-        stops[n + 1] = L;
-        n = stops.length;
+        int[] pontos = new int[n + 2];
+        pontos[0] = 0;
+        System.arraycopy(x, 0, pontos, 1, n);
+        pontos[n + 1] = L;
+        n = pontos.length;
 
         List<Integer> paradas = new ArrayList<>();
 
         for (int i = 0; i < n - 1; ) {
             int nextStop = i;
 
-            while (nextStop + 1 < n && stops[nextStop + 1] - stops[i] <= d) {
+            while (nextStop + 1 < n && pontos[nextStop + 1] - pontos[i] <= d) {
                 nextStop++;
                 operationsCounter++;
             }
@@ -30,7 +30,7 @@ public class DakarRally {
             }
 
             if (nextStop < n - 1) {
-                paradas.add(stops[nextStop]);
+                paradas.add(pontos[nextStop]);
             }
 
             i = nextStop;
